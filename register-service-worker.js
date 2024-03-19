@@ -19,7 +19,7 @@ const displayNotification = notificationTitle => {
         navigator.serviceWorker.getRegistration().then(reg => {
             const options = {
                 body: 'Push notifications are enabled!',
-                icon: '/assets/icons/icon-512x512.png',
+                icon: '/assets/icons/icon-512-512.png',
                 vibrate: [300, 400, 300]
             };
 
