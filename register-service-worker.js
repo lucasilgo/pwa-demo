@@ -3,8 +3,7 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('https://lucasilgo.github.io/pwa-demo/service-worker.js');
 
         this.document.getElementById('push-notif').addEventListener('click', () => {
-            // displayNotification('Button push notification clicked!')
-            console.log('AAAAAA')
+            displayNotification('Button push notification clicked!');
         });
     });
 }
