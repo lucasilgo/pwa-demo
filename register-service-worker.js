@@ -5,14 +5,22 @@ if ('serviceWorker' in navigator) {
         this.document.getElementById('push-notif').addEventListener('click', () => {
             displayNotification('Button push notification clicked!');
         });
+
+        this.document.getElementById('subscribe-notif').addEventListener('click', () => {
+            if ('Notification' in window && Notification.permission != 'granted') {
+                Notification.requestPermission(status => {
+                    displayNotification('Push Notification Enabled');
+                });
+            }
+        });
     });
 }
 
-if ('Notification' in window && Notification.permission != 'granted') {
-    Notification.requestPermission(status => {
-        displayNotification('Push Notification Enabled');
-    });
-}
+// if ('Notification' in window && Notification.permission != 'granted') {
+//     Notification.requestPermission(status => {
+//         displayNotification('Push Notification Enabled');
+//     });
+// }
 
 const displayNotification = notificationTitle => {
     if (Notification.permission == 'granted') {
