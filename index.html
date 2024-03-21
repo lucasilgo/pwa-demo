@@ -142,8 +142,8 @@
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging-compat.js"></script>
     <script type="module">
         const firebaseConfig = {
             apiKey: "AIzaSyBeFB8tXZpL5O7YMMywHmM3i8TQ94bKklM",
@@ -155,8 +155,8 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const messaging = getMessaging();
+        const app = firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
     </script>
 
     <script src="https://lucasilgo.github.io/pwa-demo/register-service-worker.js"></script>
