@@ -1,5 +1,3 @@
-importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js');
-
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('https://lucasilgo.github.io/pwa-demo/service-worker.js');
