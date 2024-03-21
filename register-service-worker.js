@@ -13,6 +13,22 @@ if ('serviceWorker' in navigator) {
                 });
             }
         });
+
+        messaging.getToken({ vapidKey: 'BHatYa0DeNIIBX9BwZBrqGTL7p-HhJ6NKkmmeXiBdtyrIsphWR1unshF2Ol6KS-IJ-c_UHjn8Cr-MgKD7osxS6E' })
+            .then(currentToken => {
+                if (currentToken) {
+                    this.document.getElementById('current-token').innerText = currentToken
+                } else {
+                    this.document.getElementById('current-token').innerText = 'No token registered. Please, click on subscribe.'
+                }
+            }).catch(err => {
+                this.document.getElementById('current-token').innerText = 'An error ocurred while retrieving token.'
+            });
+
+        messaging.onBackgroundMessage(payload => {
+            console.log('[firebase-messaging-sw.js] Received background message ', payload);
+            displayNotification(payload.notification.title)
+        });
     });
 }
 
@@ -21,6 +37,14 @@ if ('serviceWorker' in navigator) {
 //         displayNotification('Push Notification Enabled');
 //     });
 // }
+
+const requestPermission = () => {
+    if ('Notification' in window && Notification.permission != 'granted') {
+        Notification.requestPermission(status => {
+            displayNotification('Push Notification Enabled');
+        });
+    }
+}
 
 const displayNotification = notificationTitle => {
     if (Notification.permission == 'granted') {
