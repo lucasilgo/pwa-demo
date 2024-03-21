@@ -1,3 +1,5 @@
+importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js');
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('https://lucasilgo.github.io/pwa-demo/service-worker.js');
@@ -13,6 +15,8 @@ if ('serviceWorker' in navigator) {
                 });
             }
         });
+
+        const messaging = firebase.messaging();
 
         messaging.getToken({ vapidKey: 'BHatYa0DeNIIBX9BwZBrqGTL7p-HhJ6NKkmmeXiBdtyrIsphWR1unshF2Ol6KS-IJ-c_UHjn8Cr-MgKD7osxS6E' })
             .then(currentToken => {
