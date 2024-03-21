@@ -25,10 +25,11 @@ if ('serviceWorker' in navigator) {
                 }
             }).catch(err => {
                 this.document.getElementById('current-token').innerText = 'An error ocurred while retrieving token.'
+                console.error(err)
             });
 
-        messaging.onBackgroundMessage(payload => {
-            console.log('[firebase-messaging-sw.js] Received background message ', payload);
+        messaging.onMessage(payload => {
+            console.log('[firebase-messaging-sw.js] Received message ', payload);
             displayNotification(payload.notification.title)
         });
     });
