@@ -1,5 +1,6 @@
-importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js');
+// Service Worker
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js');
 
 const firebaseConfig = {
     apiKey: "AIzaSyBeFB8tXZpL5O7YMMywHmM3i8TQ94bKklM",
@@ -8,11 +9,24 @@ const firebaseConfig = {
     storageBucket: "pwa-example-537cb.appspot.com",
     messagingSenderId: "549243609689",
     appId: "1:549243609689:web:4dfcfd48f6a573b479c748"
+    // measurementId: "G-KEHQSF1SD0"
 };
 
+// // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging();
+
+// Initialize Firebase Cloud Messaging and get a reference to the service
+const messaging = firebase.messaging()
 
 messaging.onBackgroundMessage(payload => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-});
+    // Customize notification here
+    const notificationTitle = 'Background Message Title';
+    const notificationOptions = {
+      body: 'Background Message body.',
+      icon: '/thumb.png'
+    };
+  
+    self.registration.showNotification(notificationTitle,
+      notificationOptions);
+  });
